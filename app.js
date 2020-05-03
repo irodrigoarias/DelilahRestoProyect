@@ -1,7 +1,7 @@
 //Instalamos las dependecias que vamos a usar
-const express = require('express');
-const bodyParser = require('body-parser');
-const usuarios = require('./routes/usuarios');
+const express = require('express');             //modulo Express
+const bodyParser = require('body-parser');      //para poder acceder al req.body cuando hagamos un post
+const usuarios = require('./routes/usuarios');  //La ruta de usuarios
 
 //Iniciamos el servidor con express
 const app = express();
@@ -13,4 +13,5 @@ app.use('/usuarios',usuarios);
 //Le decimos que puerto escuchar
 app.listen(3000, () => {
     console.log("Servidor iniciado");
-})
+});
+
