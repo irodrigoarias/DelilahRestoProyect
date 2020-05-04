@@ -1,0 +1,384 @@
+openapi: 3.0.1
+
+info:
+  title: Delilah Resto
+  description: 'Servicio web de venta de alimentos'
+  version: 1.0.0
+  
+servers:
+  - url: http://localhost/api
+  
+tags:
+  - name: usuarios
+    description: Información sobre tu usuario
+  - name: platos
+    description: Información sobre nuestros platos
+  - name: pedidos
+    description: Información sobre tu pedido
+    
+    
+paths:
+  /usuarios:
+    get: 
+      tags:
+      - usuarios
+      summary: Obtener una lista de todos los usuarios
+      description: Obtiene todos los usuarios registrados
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/usuario'
+                  
+    post:
+      tags:
+      - usuarios
+      summary: Crear un usuario
+      description: ""
+      parameters:
+          - in: query
+            name: usuarioNuevo
+            required: true
+            description: Crear un usuario nuevo
+            schema:
+              $ref: '#/components/schemas/usuario'
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: string
+                example: {"Message:":"Successful request"}
+        400:
+          description: "Valores invalidos"
+          content:
+            application/json:
+              schema:
+                type: string
+                example: {"Message:":"Error 404. Page or requet not found."}
+
+  
+  /platos:
+    get: 
+      tags:
+      - platos
+      summary: Obtener una lista de todos los platos
+      description: ""
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/plato' 
+    post:
+      tags:
+      - platos
+      summary: Agregar un plato nuevo
+      description: ""
+      parameters:
+          - in: query
+            name: platoNuevo
+            required: true
+            description: Crear un plato nuevo
+            schema:
+              $ref: '#/components/schemas/plato'
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: string
+                example: {"Message:":"Successful request"}
+        400:
+          description: "Valores invalidos"
+          content:
+            application/json:
+              schema:
+                type: string
+                example: {"Message:":"Error 404. Page or requet not found."}
+  
+  /platos/{idPlatos}:
+    get: 
+      tags:
+      - platos
+      summary: Obtener plato por id
+      description: ""
+      parameters:
+          - in: path
+            name: idPlatos
+            required: true
+            description: ID del plato
+            schema:
+              type: number
+              example: 56
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/plato' 
+    put:
+      tags:
+      - platos
+      summary: Modificar un plato existente por id
+      description: ""
+      parameters:
+          - in: path
+            name: idPlatos
+            required: true
+            description: ID del plato
+            schema:
+              type: number
+              example: 56
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/plato'
+        400:
+          description: "Valores invalidos"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/plato'
+    delete: 
+      tags:
+      - platos
+      summary: Eliminar un plato existente por id
+      description: ""
+      parameters:
+          - in: path
+            name: idPlatos
+            required: true
+            description: ID del plato
+            schema:
+              type: number
+              example: 56
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/plato' 
+  
+    
+                
+  /pedidos:
+    get: 
+      tags:
+      - pedidos
+      summary: Obtener una lista de todos los pedidos
+      description: Obtiene todos los pedidos registrados
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/pedido' 
+    post:
+      tags:
+      - pedidos
+      summary: Agregar un pedido nuevo
+      description: ""
+      parameters:
+          - in: query
+            name: pedidoNuevo
+            required: true
+            description: Crear un pedido nuevo
+            schema:
+              $ref: '#/components/schemas/pedido'
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: string
+                example: {"Message:":"Successful request"}
+        400:
+          description: "Valores invalidos"
+          content:
+            application/json:
+              schema:
+                type: string
+                example: {"Message:":"Error 404. Page or requet not found."}
+                
+  /pedidos/{idPedidos}:
+    get: 
+      tags:
+      - pedidos
+      summary: Obtener una pedido por id
+      description: ""
+      parameters:
+          - in: path
+            name: idPedidos
+            required: true
+            description: ID del pedido
+            schema:
+              type: number
+              example: 56
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/pedido' 
+    put:
+      tags:
+      - pedidos
+      summary: Modificar un pedido existente por id
+      description: ""
+      parameters:
+          - in: path
+            name: idPedidos
+            required: true
+            description: ID del pedido
+            schema:
+              type: number
+              example: 56
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/pedido'
+        400:
+          description: "Valores invalidos"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pedido'
+    delete: 
+      tags:
+      - pedidos
+      summary: Eliminar un pedido existente por id
+      description: ""
+      parameters:
+          - in: path
+            name: idPedidos
+            required: true
+            description: ID del pedido
+            schema:
+              type: number
+              example: 56
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/pedido' 
+  
+  
+                  
+components:
+  schemas:
+    pedido:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        idPedido:
+          type: integer
+          format: int64
+        cantidad:
+          type: integer
+          format: int32
+        fecha:
+          type: string
+          format: date-time
+        status:
+          type: string
+          description: Order Status
+          enum:
+            - nuevo
+            - confirmado
+            - preparando
+            - enviando
+            - entregado
+            - cancelado
+        complete:
+          type: boolean
+          default: false
+    usuario:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        username:
+          type: string
+        fullName:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        direccion:
+          type: string          
+        password:
+          type: string
+    plato:
+      type: object
+      properties: 
+        id:
+          type: integer
+          format: int64
+        nombre:
+          type: string
+        descripcion:
+          type: string
+          
+          
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+          
+          
+ # securitySchemes:
+#    petstore_auth:
+ #     type: oauth2
+  #    flows:
+   #     implicit:
+    #      authorizationUrl: 'http://petstore.swagger.io/oauth/dialog'
+     #     scopes:
+      #      'write:pets': modify pets in your account
+       #     'read:pets': read your pets
+  #  api_key:
+   #   type: apiKey
+    #  name: api_key
+     # in: header
