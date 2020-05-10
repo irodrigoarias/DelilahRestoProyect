@@ -16,8 +16,17 @@ router.post('/platonuevo', (req,res) => {
     {replacements: platonuevo})
     .then(resultados => res.send(resultados)); //? Que devuelve aca
 });
-    
 
+router.delete('/chauplato/:id', (req, res) => {
+    const id = req.params.id;
+    sequelize.query('DELETE FROM platos WHERE idPlato = ?',{replacements: [id]}) //? xq ID VA ENTRE CORCHETES?
+    .then(res.send("Nudes Recibed"));
+    //console.log("Esta intentando borrar el plato con ID:" + id);
+    //res.status(201).send("SEND NUDES");
+    
+});
+    
+// TODO: seguir haciendo los restantes EDIT y el DELETE
 
 //Tenemos que exportar esto para que lo pueda consumir app
 module.exports = router;
