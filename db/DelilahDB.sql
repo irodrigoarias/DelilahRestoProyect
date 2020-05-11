@@ -38,7 +38,7 @@ CREATE TABLE platos (
   PRIMARY KEY (`idPlato`));
   
   INSERT INTO platos(nombre, precio) values ("sushi",500.00);
-  INSERT INTO platos(nombre, precio) values ("hamburguesa",250.00);
+  -- INSERT INTO platos(idPlato, nombre, precio) values (2,"hamburguesa",250.00);
 
 
 /*
