@@ -7,14 +7,23 @@ const sequelize = require('../dbKeysModule');     // esto tiene sequelize ya con
 const sequelize = new Sequelize(dbkeys.dbkeys); */
 
 //Ya estamos ubicados en la ruta /USUARIOS y vamos definiendo el metodo, GET en este caso, y la funcion que queremos ejecutar denrtro
-router.route('/')
-  .get( (req, res) => {
-    sequelize.query('SELECT * FROM delilahdb.usuarios', {type: sequelize.QueryTypes.SELECT})
-    .then((Users => {
-        res.status(200).send('Lista de usuarios' + JSON.stringify(Users));
-     }));
 
- });
+// ToDo: vas a crear una forma de crear usuarios para el Log In 
+
+router.post('/registrar', (req, res) => {
+  const registerNewUser = req.body;
+
+  sequelize.query('INSERT INTO usuarios (username, fullname, email, phone, address, pass) VALUES ( :username, :fullname, :email, :phone, :address, :pass)',
+  {replacements: registerNewUser})
+  .then(usuario => 
+        res.status(200).send('Usuario agregado'))
+});
+
+// ToDo: La lista de usuarios la va a poder ver solo quien tenga el rol de Admin, asi que por ahora vamos a tener que dejar esto de abajo comentado. 
+router.get('/listausuarios', (req,res) => {
+  sequelize.query('SELECT * FROM delilahdb.usuarios',{type: sequelize.QueryTypes.SELECT})
+  .then(Usuarios => res.status(200).send('Lista de Usuarios'+ JSON.stringify(Usuarios)))
+});
 
 //Tenemos que exportar esto para que lo pueda consumir app
 module.exports = router;

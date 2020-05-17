@@ -5,8 +5,8 @@ const sequelize = require('../dbKeysModule');
 
 router.get('/', (req,res) => {
     sequelize.query('SELECT * FROM delilahdb.platos',{type: sequelize.QueryTypes.SELECT})
-    .then(Users => {
-        res.status(200).send('Lista de Platos' + JSON.stringify(Users));
+    .then(Platos => {
+        res.status(200).send('Lista de Platos' + JSON.stringify(Platos));
     })
 });
 
